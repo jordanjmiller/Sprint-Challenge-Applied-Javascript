@@ -31,40 +31,41 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then(response => {
 
       response.data.articles.bootstrap.forEach((article) => {
-        articleCreator(bootstrapArticles, article);
+        articleCreator(bootstrapArticles, article, 'bootstrap');
       });
       bootstrapArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
       response.data.articles.javascript.forEach((article) => {
-        articleCreator(javascriptArticles, article);
+        articleCreator(javascriptArticles, article, "javascript");
       });
       javascriptArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
       response.data.articles.technology.forEach((article) => {
-        articleCreator(technologyArticles, article);
+        articleCreator(technologyArticles, article, 'technology');
       });
       technologyArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
       response.data.articles.jquery.forEach((article) => {
-        articleCreator(jqueryArticles, article);
+        articleCreator(jqueryArticles, article, 'jquery');
       });
       jqueryArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
       response.data.articles.node.forEach((article) => {
-        articleCreator(nodejsArticles, article);
+        articleCreator(nodejsArticles, article, 'node.js');
       });
       nodejsArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
+      console.log(nodejsArticles);
 
 })
   .catch(error => {console.log('Error! : ' + error)});
 
-function articleCreator(array, obj){
+function articleCreator(array, obj, topic){
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
     let headlineDiv = document.createElement('div');
@@ -76,16 +77,17 @@ function articleCreator(array, obj){
     imageDiv.classList.add('img-container');
     let img = document.createElement('img');
     img.src = obj.authorPhoto;
-    console.log(obj.authorPhoto);
     let span = document.createElement('span');
     span.textContent = obj.authorName;
+
+    cardDiv.setAttribute('data-topic', topic);
 
     imageDiv.appendChild(img);
     authorDiv.appendChild(imageDiv);
     authorDiv.appendChild(span);
     cardDiv.appendChild(headlineDiv);
     cardDiv.appendChild(authorDiv);
-
+    console.log(cardDiv);
     array.push(cardDiv);
 }
 
