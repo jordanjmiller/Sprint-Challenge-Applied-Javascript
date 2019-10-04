@@ -30,7 +30,9 @@ let nodejsArticles = [];
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then(response => {
       console.log(response);
+      console.log('THIS: ');
       console.log(response.data);
+      
       response.data.articles.bootstrap.forEach((article) => {
         articleCreator(bootstrapArticles, article);
       });
@@ -55,7 +57,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
       jqueryArticles.forEach((article)=>{
           cardContainer.appendChild(article);
       })
-      response.data.articles.topics[4].forEach((article) => {
+      response.data.articles.node.forEach((article) => {
         articleCreator(nodejsArticles, article);
       });
       nodejsArticles.forEach((article)=>{
