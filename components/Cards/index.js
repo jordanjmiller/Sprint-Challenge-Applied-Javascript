@@ -29,10 +29,7 @@ let nodejsArticles = [];
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then(response => {
-      console.log(response);
-      console.log('THIS: ');
-      console.log(response.data);
-      
+
       response.data.articles.bootstrap.forEach((article) => {
         articleCreator(bootstrapArticles, article);
       });
@@ -79,6 +76,7 @@ function articleCreator(array, obj){
     imageDiv.classList.add('img-container');
     let img = document.createElement('img');
     img.src = obj.authorPhoto;
+    console.log(obj.authorPhoto);
     let span = document.createElement('span');
     span.textContent = obj.authorName;
 
